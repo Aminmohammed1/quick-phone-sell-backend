@@ -13,11 +13,16 @@ public class Variant {
 
     private String ram;
     private String rom;
+
+    @ElementCollection
+    @CollectionTable(name = "variant_colors", joinColumns = @JoinColumn(name = "variant_id"))
+    @Column(name = "color")
     private List<String> colors;
+
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "model_id")
+    @JoinColumn(name = "model_id", nullable = false)
     @com.fasterxml.jackson.annotation.JsonBackReference
     private Model model;
 
