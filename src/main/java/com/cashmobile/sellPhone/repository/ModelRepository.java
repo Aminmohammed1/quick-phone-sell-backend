@@ -13,6 +13,8 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
 
     boolean existsByName(String Name);
 
+    List<Model> findByBrand_NameIgnoreCase(String brandName);
+
     void deleteByName(String Name);
 
 }

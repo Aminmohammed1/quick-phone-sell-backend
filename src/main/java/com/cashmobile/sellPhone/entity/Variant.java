@@ -14,10 +14,8 @@ public class Variant {
     private String ram;
     private String rom;
 
-    @ElementCollection
-    @CollectionTable(name = "variant_colors", joinColumns = @JoinColumn(name = "variant_id"))
-    @Column(name = "color")
-    private List<String> colors;
+    private String price;
+
 
     private String imageUrl;
 
@@ -26,12 +24,27 @@ public class Variant {
     @com.fasterxml.jackson.annotation.JsonBackReference
     private Model model;
 
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getRam() {
@@ -50,16 +63,20 @@ public class Variant {
         this.rom = rom;
     }
 
-    public List<String> getColors() {
-        return colors;
-    }
-
-    public void setColors(List<String> colors) {
-        this.colors = colors;
-    }
-
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Variant{" +
+                "id=" + id +
+                ", ram='" + ram + '\'' +
+                ", rom='" + rom + '\'' +
+                ", price='" + price + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", model=" + model +
+                '}';
     }
 
     public void setImageUrl(String imageUrl) {

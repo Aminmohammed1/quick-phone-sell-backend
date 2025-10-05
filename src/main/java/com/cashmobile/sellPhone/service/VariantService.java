@@ -22,4 +22,5 @@ public class VariantService {
     public Variant saveVariant(Variant variant) {
         return variantRepository.save(variant);
     }
+
 }

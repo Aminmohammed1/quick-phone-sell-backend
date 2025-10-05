@@ -2,6 +2,7 @@ package com.cashmobile.sellPhone.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,14 +16,19 @@ public class Model {
 
     private String imageUrl;
 
+    @ElementCollection
+    @CollectionTable(name = "model_colors", joinColumns = @JoinColumn(name = "model_id"))
+    @Column(name = "color")
+    private List<String> colors = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "brand_id")
     @com.fasterxml.jackson.annotation.JsonBackReference
     private Brand brand;
 
-    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, orphanRemoval = true)
     @com.fasterxml.jackson.annotation.JsonManagedReference
-    private List<Variant> variants;
+    private List<Variant> variants = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -50,6 +56,14 @@ public class Model {
 
     public Brand getBrand() {
         return brand;
+    }
+
+    public List<String> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<String> colors) {
+        this.colors = colors;
     }
 
     public void setBrand(Brand brand) {

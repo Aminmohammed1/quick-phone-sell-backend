@@ -5,6 +5,7 @@ import com.cashmobile.sellPhone.repository.ModelRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModelService {
@@ -21,5 +22,13 @@ public class ModelService {
 
     public Model saveModel(Model model) {
         return modelRepository.save(model);
+    }
+
+    public List<Model> getAllModels() {
+        return modelRepository.findAll();
+    }
+
+    public List<Model> getModelsByBrandName(String brandName) {
+        return modelRepository.findByBrand_NameIgnoreCase(brandName);
     }
 }

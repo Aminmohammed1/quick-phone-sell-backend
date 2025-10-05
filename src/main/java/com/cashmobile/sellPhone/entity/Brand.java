@@ -14,7 +14,7 @@ public class Brand {
     private String name;
     private String logoUrl;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @com.fasterxml.jackson.annotation.JsonManagedReference
     private List<Model> models;
 
